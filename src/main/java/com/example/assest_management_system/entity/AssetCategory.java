@@ -17,6 +17,6 @@ public class AssetCategory {
     @Column(name="category_id")
     private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(name="category_name" ,nullable = false,unique = true, length = 50)
     private String categoryName;
 }

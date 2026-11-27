@@ -7,31 +7,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class User {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-     @Column(name="user_id")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
-   @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true, length = 50)
     private String username;
 
-   @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-   @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String password;
 
-   @Enumerated(EnumType.STRING)
-   @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
 
-   @ManyToOne
-   @JoinColumn(name="manager_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    @lombok.ToString.Exclude
+    @lombok.EqualsAndHashCode.Exclude
     private User manager;
 }
